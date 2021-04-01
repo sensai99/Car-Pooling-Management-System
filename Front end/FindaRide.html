@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="FIndaRide.css">
+<style>
+body {
+  margin: 0;
+  /* font-family: Arial, Helvetica, sans-serif;
+  */
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  height:50px;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.topnav-right {
+  float: right;
+  position: absolute;
+  background-color: #333;
+  right: 5%;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.container {
+  text-align: center;
+  top:20%;
+  font-size: 50px;
+  color: black;
+}
+
+.container {
+  text-align: center;
+  top:20%;
+  font-size: 50px;
+  color: black;
+}
+.center {
+    text-align: center;
+}
+
+.button {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: rgb(0, 175, 245); /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.button2:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <!-- 
+      Add Logo related code here
+   -->
+  <div class="topnav-right">
+    <a href="#redirect to Sign up page">Sign up</a>
+    <a href="#redirect to Log in page">Log in</a>
+    <div class="dropdown">
+        <!-- 
+            Here the dropdown should be dynamic according to the individual's name
+         -->
+        <button class="dropbtn">Sai 
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="#redirect to Dashboard page">Dashboard</a>
+          <a href="#redirect to Profile page">Profile</a>
+          <a href="#redirect to Logout page">Log out</a>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="container">
+    <br><br>
+    <h> Find a ride</h>
+</div>
+
+<div class="search__container">
+    <!-- <p class="search__title">
+        Go ahead, hover over search
+    </p> -->
+    <input class="search__input" type="text" placeholder="leaving from">
+    <br><br>
+    <input class="search__input" type="text" placeholder="going to">
+</div>
+
+<hr style="width: 35%;">
+<br>
+<div class="center">
+    <label for="passengers">No. of passengers:</label>
+    <select id="passengers">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <!-- <option value="1" selected>1</option> -->
+    </select>
+
+</div>
+
+<br>
+<hr style="width: 35%;">
+
+<button class="button button2">Search</button>
+
+</body>
+</html>
