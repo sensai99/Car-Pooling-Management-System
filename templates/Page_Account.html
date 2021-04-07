@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../static/NavigationBar.css">
+<link rel="stylesheet" href="../static/AccountDropdown.css">
+<style>
+
+.rcorners {
+  border-radius: 25px;
+  /* background:#e5c396; */
+  border: 2px solid grey;
+  background-position: left top;
+  background-repeat: repeat;
+  padding: 20px; 
+  width: 600px;
+  height: 240px;  
+}
+
+.centered-left {
+  position: absolute;
+  top: 15%;
+  left: 15.5%;
+  font-size: 17px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.container {
+  position: relative;
+  /* text-align: center; */
+  right: 50%;
+  left: 90%;
+  font-size: 30px;
+  color: black;
+}
+
+.underline-on-hover:hover {
+    text-decoration: underline;
+}
+
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <!-- 
+      Add Logo related code here
+   -->
+  <div class="topnav-right">
+    <a href="{{ url_for('offer_ride') }}">Offer a ride</a>
+    <a href="{{ url_for('find_ride') }}">Find a ride</a>
+    <div class="dropdown">
+        <!-- 
+            Here the dropdown should be dynamic according to the individual's name
+         -->
+        <button class="dropbtn">{{session.username}} 
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="{{ url_for('dashboard') }}">Dashboard</a>
+          <a href="#redirect to Profile page">Profile</a>
+          <a href="{{ url_for('logout') }}">Log out</a>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="centered-left">
+    <h1 style="color:#808080"> Dashboard </h1>
+    <hr style="width: 200%;">
+
+
+    <div class="container">
+      <br>
+      <br>
+      <h> Hello {{session.username}}</h>
+      <br>
+      <br>
+    </div>
+    
+    <br>
+
+    <div class="rcorners">
+        <h>Car Share Preferences</h>
+        <br>
+        <div class="underline-on-hover">
+          <a href="" style="text-decoration: none;"><p>&rarr; Edit your car share preferences</p></a>
+        </div>
+
+        <hr>
+
+        <h>Member verification</h>
+        <br>
+        <div class="underline-on-hover">
+          <a href="" style="text-decoration: none;"><p>&rarr; Complete your Member Verification</p></a>
+        </div>
+
+        <hr>
+
+        <h>Profile</h>
+        <br>
+        <div class="underline-on-hover">
+          <a href="" style="text-decoration: none;"><p>&rarr; View your public profile</p></a>
+        </div>
+
+    </div>
+    
+</div>
+
+
+</body>
+</html>
