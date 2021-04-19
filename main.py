@@ -61,6 +61,10 @@ def login():
 def logout():
     session.pop('mobilenumber', None)
     session.pop('username', None)
+    session.pop('chattines', None)
+    session.pop('smoking', None)
+    session.pop('pets', None)
+    session.pop('music', None)
     return redirect(url_for('home'))
 
 
@@ -73,6 +77,7 @@ def signupNum():
         mobilenumber = request.form['mobilenumber']
 
         session['mobilenumber'] = mobilenumber
+        session['flag_signup'] = 1
 
         api.phones.verification_start(mobilenumber, country_code = '+91', via = 'sms')
 
@@ -144,6 +149,9 @@ def dashboard():
 # for offer a ride page
 @app.route('/offer-ride')
 def offer_ride():
+
+    # source = request.form['source']
+    # source = request.form['source']
     return render_template('OfferaRide.html')
 
 
@@ -204,6 +212,107 @@ def update_password():
         return redirect(url_for('login'))
 
     return render_template('updatepass.html')
+
+
+# for profile page
+@app.route('/profile', methods=['POST', 'GET'])
+def profile():
+
+    mobilenumber = session['mobilenumber']
+    cursor = db.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute('SELECT * FROM logininfo_t WHERE mobilenumber=%s', [mobilenumber])
+    info = cursor.fetchone()
+
+    # if entry found
+    if info:
+
+        preferences = info['preferences']
+
+        if preferences[0] == 'Y':
+            session['chattines'] = 'yes'
+        elif preferences[0] == 'N':
+            session['chattines'] = 'no'
+        else:
+            session['chattines'] = 'N/A'
+
+        if preferences[1] == 'Y':
+            session['smoking'] = 'yes'
+        elif preferences[1] == 'N':
+            session['smoking'] = 'no'
+        else:
+            session['smoking'] = 'N/A'
+
+        if preferences[2] == 'Y':
+            session['pets'] = 'yes'
+        elif preferences[2] == 'N':
+            session['pets'] = 'no'
+        else:
+            session['pets'] = 'N/A'
+
+        if preferences[3] == 'Y':
+            session['music'] = 'yes'
+        elif preferences[3] == 'N':
+            session['music'] = 'no'
+        else:
+            session['music'] = 'N/A'
+        
+
+
+    return render_template('profile.html')
+
+# for travel preferences page
+@app.route('/travel-preferences', methods=['POST', 'GET'])
+def travel_preferences():
+
+    if request.method == 'POST':
+
+        session['chattines'] = chattines = request.form['chattines']
+        session['smoking'] = smoking = request.form['smoking']
+        session['pets'] = pets = request.form['pets']
+        session['music'] = music = request.form['music']
+        
+
+        preferences = ''
+        if chattines == 'yes':
+            preferences += 'Y'
+        elif chattines == 'no':
+            preferences += 'N'
+        else:
+            preferences += 'X'
+
+        if smoking == 'yes':
+            preferences = 'Y'
+        elif smoking == 'no':
+            preferences += 'N'
+        else:
+            preferences += 'X'
+
+        if pets == 'yes':
+            preferences += 'Y'
+        elif pets == 'no':
+            preferences += 'N'
+        else:
+            preferences += 'X'
+
+        if music == 'yes':
+            preferences += 'X'
+        elif music == 'no':
+            preferences += 'N'
+        else:
+            preferences += 'X'
+
+
+        mobilenumber = session['mobilenumber']
+
+        # update these preferences to the database
+        cursor = db.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('UPDATE `logininfo_t` SET `preferences` = %s WHERE `mobilenumber` = %s', (preferences, mobilenumber))
+        db.connection.commit()
+
+
+        return redirect(url_for('profile'))
+
+    return render_template('travelpreferences.html')
 
 
 if __name__ == '__main__':
