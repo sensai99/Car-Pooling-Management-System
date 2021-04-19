@@ -21,6 +21,7 @@ db = MySQL(app)
 # for default page
 @app.route('/')
 def home():
+    session['flag_signup'] = 1
     return render_template("Page_Basic.html")
 
 # for login page
@@ -75,13 +76,21 @@ def signupNum():
     if request.method == 'POST':
 
         mobilenumber = request.form['mobilenumber']
-
         session['mobilenumber'] = mobilenumber
         session['flag_signup'] = 1
 
-        api.phones.verification_start(mobilenumber, country_code = '+91', via = 'sms')
-
-        return redirect(url_for('verify'))
+        cursor = db.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM logininfo_t WHERE mobilenumber=%s',([mobilenumber]))
+        info = cursor.fetchall()
+        
+        if info:
+            print('yes')
+            return render_template('signup_mobNum.html',exists='yes')
+        
+        else:
+            print('no')
+            api.phones.verification_start(mobilenumber, country_code = '+91', via = 'sms')
+            return redirect(url_for('verify'))
 
     return render_template('signup_mobNum.html')
 

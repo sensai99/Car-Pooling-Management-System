@@ -15,6 +15,13 @@
   color: black;
 }
 
+.container2 {
+  text-align: center;
+  top:10%;
+  font-size: 30px;
+  color: black;
+}
+
 .button {
   position: absolute;
   top: 38%;
@@ -76,6 +83,13 @@
         <button class="button button2">Continue</button>
     </form>
 </div>
+{% if exists %}
+  <div class="container2">
+    <br><br>
+    <h></h> Account already exists! Go to the <a href="{{ url_for('login') }}">login</a> page </h>
+    <br>
+  </div>
+{% endif %}
 
 </body>
 </html>
