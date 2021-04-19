@@ -1,0 +1,10 @@
+.div_hover { 
+  position: relative;
+  top:20%;
+  left: 33%;
+  background-color: #FFFFFF; 
+}
+
+.div_hover:hover { 
+  background-color: #000000; 
+}
