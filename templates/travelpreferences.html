@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+<style>
+
+.center {
+  text-align: center;
+  position: relative;
+  /* left: 45%; */
+  font-size: 50px;
+}
+
+.container {
+  /* text-align: center; */
+  position: relative;
+  top:30%;  
+  left: 46%;
+  font-size: 20px;
+  color: black;
+}
+
+.button {
+  position: absolute;
+  top: 47%;
+  left:49%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: rgb(0, 175, 245); /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.button2:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="center">
+    <br>
+    <h> Travel Preferences</h>
+</div>
+
+<form method="POST" action = "/travel-preferences">
+<div class="container">
+
+    <br>
+    <label for="chattines">Chattines:</label>
+
+    <select name = "chattines" id="chattines">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+
+</div>
+
+<div class="container">
+    <br><br>
+    <label for="smoking">Smoking:</label>
+
+    <select name = "smoking" id="smoking">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+  </div>
+
+  <div class="container">
+    <br><br>
+    <label for="pets">Pets:</label>
+
+    <select name = "pets" id="pets">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+  </div>
+  
+  <div class="container">
+    <br><br>
+    <label for="music">Music:</label>
+
+    <select name = "music" id="music">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+  </div>
+
+
+<button type="submit" class="button button2">Save</button>
+
+</form>
+</div>
+</body>
+</html>

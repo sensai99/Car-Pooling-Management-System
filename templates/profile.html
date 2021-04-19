@@ -2,21 +2,30 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
-
-<script src="https://maps.googleapis.com/maps/api/js?Key=AIzaSyCv2ZvJleVLPSYC2dMjy24d7T6kb8LH56U&v=3.exp&sensor=false&libraries=places"></script>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="../static/FindaRide.css">
+<link rel="stylesheet" href="../static/profile.css">
 <link rel="stylesheet" href="../static/NavigationBar.css">
 <link rel="stylesheet" href="../static/AccountDropdown.css">
 <style>
 
 .container {
-  text-align: center;
-  top:20%;
+  /* text-align: center; */
+  position: relative;
+  top:20%;  
+  left: 33%;
   font-size: 50px;
   color: black;
 }
+
+.container_ {
+  /* text-align: center; */
+  position: relative;
+  top:20%;  
+  left: 33%;
+  font-size: 20px;
+  color: black;
+}
+
 .center {
     text-align: center;
 }
@@ -45,6 +54,14 @@
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
+.center {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 </style>
 </head>
 <body>
@@ -65,7 +82,7 @@
         </button>
         <div class="dropdown-content">
           <a href="{{ url_for('dashboard') }}">Dashboard</a>
-          <a href="#redirect to Profile page">Profile</a>
+          <a href="{{ url_for('profile') }}">Profile</a>
           <a href="{{ url_for('logout') }}">Log out</a>
         </div>
       </div>
@@ -73,45 +90,32 @@
 </div>
 
 <div class="container">
-    <br><br>
-    <h> Offer a ride</h>
+    <br>
+    <h> Hi {{ session.username }}</h>
 </div>
 
-<div class="search__container">
-    <!-- <p class="search__title">
-        Go ahead, hover over search
-    </p> -->
-    <input class="search__input" id="locationTextField" type="text" placeholder="leaving from" name="source">
-    <br><br>
-    <input class="search__input" type="text" placeholder="going to" name="destination">
+<div class="container_">
+  <br><br>
+  <a href="{{ url_for('travel_preferences') }}" style="text-decoration: none;"> Edit travel preferences</a>
+  <hr align ="left" style="width: 40%;">
+  <h> Chattines : {{ session.chattines }} </h><br>
+  <h> Smoking : {{ session.smoking }} </h><br>
+  <h> Pets : {{ session.pets }} </h><br>
+  <h> Music : {{ session.music }} </h><br>
 
-    <script>
-      function init() {
-          var input = document.getElementById('locationTextField');
-          var autocomplete = new google.maps.places.Autocomplete(input);
-      }
+  <!-- 
+    print all his travel preferences here
+   -->
 
-      google.maps.event.addDomListener(window, 'load', init);
-  </script>
-</div>
+   <br>
+   <a href="#redirect to govtID verification page" style="text-decoration: none;"> Verify your Govt.ID</a>
+   <hr align ="left" style="width: 40%;">
 
-<!-- <hr style="width: 35%;">
-<br>
-<div class="center">
-    <label for="passengers">No. of passengers:</label>
-    <select id="passengers">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-    </select>
+   <br>
+   <a href="#redirect to wallet page" style="text-decoration: none;"> Wallet information</a>
+   <hr align ="left" style="width: 40%;">
 
 </div>
-
-<br>
-<hr style="width: 35%;"> -->
-
-<button class="button button2">Search</button>
 
 </body>
 </html>
