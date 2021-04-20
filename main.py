@@ -84,11 +84,9 @@ def signupNum():
         info = cursor.fetchall()
         
         if info:
-            print('yes')
             return render_template('signup_mobNum.html',exists='yes')
         
         else:
-            print('no')
             api.phones.verification_start(mobilenumber, country_code = '+91', via = 'sms')
             return redirect(url_for('verify'))
 
@@ -156,11 +154,17 @@ def dashboard():
 
 
 # for offer a ride page
-@app.route('/offer-ride')
+@app.route('/offer-ride', methods=['POST', 'GET'])
 def offer_ride():
-
-    # source = request.form['source']
-    # source = request.form['source']
+    
+    if request.method == 'POST':
+        
+        source = request.form['source']
+        destination = request.form['destination']
+        
+        if source and destination:
+            return redirect(url_for('post_route'))
+    
     return render_template('OfferaRide.html')
 
 
@@ -168,6 +172,21 @@ def offer_ride():
 @app.route('/find-ride')
 def find_ride():
     return render_template('FindaRide.html')
+
+
+@app.route('/post-route', methods=['POST', 'GET'])
+def post_route():
+    # select = request.form('passengers_select')
+    # fare = request.form('farepkm')
+    # print(select, fare)
+    
+    # # if select and fare:
+    #     return redirect(url_for('dashboard'))
+
+        
+    return render_template('PostRoute.html')
+
+
 
 # for forgot password page
 @app.route('/forgot-password', methods = ['POST', 'GET'])

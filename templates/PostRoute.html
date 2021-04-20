@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+
+<script src="https://maps.googleapis.com/maps/api/js?Key=AIzaSyCv2ZvJleVLPSYC2dMjy24d7T6kb8LH56U&v=3.exp&sensor=false&libraries=places"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../static/FindaRide.css">
+<link rel="stylesheet" href="../static/NavigationBar.css">
+<link rel="stylesheet" href="../static/AccountDropdown.css">
+<link rel="stylesheet" href="../static/logindetails.css">
+<style>
+
+.container {
+  text-align: center;
+  top:20%;
+  font-size: 50px;
+  color: black;
+}
+
+.container-left {
+  text-align: left;
+  position: relative;
+  top: 25%;
+  left: 26.5%;
+  font-size: 25px;
+  color: black;
+}
+
+.center {
+    text-align: center;
+}
+
+.button {
+  position: relative;
+  top: 50%;
+  left: 35%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: rgb(0, 175, 245); /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: -5px 115px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.button2:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+select {
+  width: 810px;
+  height: 40px;
+  margin: 10px;
+}
+select:focus {
+  width: 810px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <!-- 
+      Add Logo related code here
+   -->
+  <div class="topnav-right">
+    <a href="{{ url_for('offer_ride') }}">Offer a ride</a>
+    <a href="{{ url_for('find_ride') }}">Find a ride</a>
+    <div class="dropdown">
+        <!-- 
+            Here the dropdown should be dynamic according to the individual's name
+         -->
+        <button class="dropbtn">{{session.username}}
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="{{ url_for('dashboard') }}">Dashboard</a>
+          <a href="#redirect to Profile page">Profile</a>
+          <a href="{{ url_for('logout') }}">Log out</a>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="container">
+    <br><br>
+    <h> Ride Preferences</h>
+    <br><br>
+</div>
+
+<div class="container">
+  <div class="container-left">
+    Choose the number of passengers:
+  </div>
+  <form action="post-ride" method="POST">
+    <select name="passengers_select">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+    </select>
+  </form>
+</div>
+
+<br>
+<br>
+<br>
+
+<div>
+  <div class="container-left">
+    Fare Per Kilometer:
+  </div>
+  
+  <form action="/post-ride" method="POST" style="max-width:810px;margin:auto">
+    <br>
+    <div class="input-container">
+    <input class="input-field" type="tel" placeholder="" name="farepkm">
+    </div>
+    <br>
+    <br>
+    <button type="submit" class="button button2">Continue</button>
+  </form>
+</div>
+
+</body>
+</html>

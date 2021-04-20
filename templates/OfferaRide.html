@@ -81,37 +81,22 @@
     <!-- <p class="search__title">
         Go ahead, hover over search
     </p> -->
+  <form action="/offer-ride" method="POST">
     <input class="search__input" id="locationTextField" type="text" placeholder="leaving from" name="source">
     <br><br>
     <input class="search__input" type="text" placeholder="going to" name="destination">
 
-    <script>
+    <!-- <script>
       function init() {
           var input = document.getElementById('locationTextField');
           var autocomplete = new google.maps.places.Autocomplete(input);
       }
 
       google.maps.event.addDomListener(window, 'load', init);
-  </script>
+  </script> -->
+    <button class="button button2">Continue</button>
+  </form>
 </div>
-
-<!-- <hr style="width: 35%;">
-<br>
-<div class="center">
-    <label for="passengers">No. of passengers:</label>
-    <select id="passengers">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-    </select>
-
-</div>
-
-<br>
-<hr style="width: 35%;"> -->
-
-<button class="button button2">Search</button>
 
 </body>
 </html>
